@@ -3,16 +3,19 @@ Exploring Azure with Terraform. This project provisions a low-cost environment f
 # Setup
 
 ### Sign in
+
 ```
 az login
 ```
 
 ### Run Terraform init
+
 ```
 terraform init
 ```
 
 ### Run Terraform apply
+
 ```
 terraform apply
 ```
