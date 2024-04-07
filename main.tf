@@ -28,7 +28,7 @@ resource "azurerm_costmanagement_budget" "example_budget" {
   }
 }
 
- resource "azurerm_network_interface" "example_nic" {
+ resource "azurerm_network_interface" "nic" {
   name                  = "prime95-nic"
   location              = azurerm_resource_group.example.location
   resource_group_name   = azurerm_resource_group.example.name
@@ -44,7 +44,7 @@ resource "azurerm_linux_virtual_machine" "prime95_vm" {
   name                  = "prime95-vm"
   resource_group_name   = azurerm_resource_group.prime95_rg.name
   location              = azurerm_resource_group.prime95_rg.location
-  network_interface_ids = [azurerm_network_interface.example_nic.id]
+  network_interface_ids = [azurerm_network_interface.nic.id]
   size                  = "Standard_B1s" 
   admin_username        = var.admin_username
   admin_password        = var.admin_password
@@ -61,20 +61,24 @@ resource "azurerm_linux_virtual_machine" "prime95_vm" {
     version   = "latest"
   }
 
-    # Script to install and run Prime95 
-    custom_data = base64encode(<<EOF
+  # Script to install and run Prime95 
+  custom_data = base64encode(<<EOF
     #!/bin/bash
     # Update and install dependencies
-    sudo apt-get update && sudo apt-get install -y any_dependencies_Prime95_needs
+    # sudo apt-get update && sudo apt-get install -y any_dependencies_Prime95_needs
 
     # Download Prime95 (assuming a Linux version is available)
-    wget http://path/to/prime95/linux/binary
+    curl https://www.mersenne.org/download/software/v30/30.19/p95v3019b13.linux64.tar.gz --output prime95.tar.gz
 
-    # Unpack if needed (replace with appropriate commands)
-    tar -xvf prime95_binary.tar.gz 
+    # Unpack
+    tar -xvzf prime95.tar.gz
 
     # Execute Prime95 (adjust the path and execution options as needed)
-    ./prime95 
+    ./mprime -m
+
+    # TODO login to Prime95 with user
+    # TODO settings and configs
+
     EOF
     )
 }
