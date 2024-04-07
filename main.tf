@@ -49,7 +49,7 @@ resource "azurerm_subnet" "azurerm_subnet" {
 
   ip_configuration {
     name                          = "prime95-internal"
-    subnet_id                     = azurerm_subnet.example.id 
+    subnet_id                     = azurerm_subnet.azurerm_subnet.id 
     private_ip_address_allocation = "Dynamic" 
   }
 }
