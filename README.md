@@ -16,3 +16,9 @@ terraform init
 ```
 terraform apply
 ```
+
+Important Note: When finished testing, run the following command to tear down the infrastructure and avoid incurring further charges:
+
+```
+terraform destroy
+```
