@@ -2,7 +2,11 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "~>3.0" # Adjust version as needed
+      version = "~>3.0" 
+    }
+    azurermpreview = {
+      source  = "hashicorp/azurerm-preview"
+      version = "~>3.0" 
     }
   }
 }
@@ -12,7 +16,7 @@ resource "azurerm_resource_group" "prime95_rg" {
   location = "westus" # Choose a Free Tier supported location 
 }
 
-resource "azurerm_costmanagement_budget" "example_budget" {
+resource "azurerm_preview_costmanagement_budget" "example_budget" {
   name                 = "example-resource-group-budget"
   scope                = azurerm_resource_group.example.id
   amount               = 5 # Your desired budget limit 
