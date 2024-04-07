@@ -1,1 +1,1 @@
-# terraform-prime95
+terraform init
