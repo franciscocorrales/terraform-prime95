@@ -15,3 +15,8 @@ variable "admin_password" {
   default = "password"
 }
 
+# mersenne.org username
+variable "mersenne_username" {
+  type = string
+  default = "anonymous"
+}
