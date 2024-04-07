@@ -91,6 +91,7 @@ resource "azurerm_linux_virtual_machine" "prime95_vm" {
     ./mprime -m
 
     # TODO login to Prime95 with user
+    # var.mersenne_username
     # TODO settings and configs
 
     EOF
