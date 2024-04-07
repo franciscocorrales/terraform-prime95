@@ -1,3 +1,10 @@
+
+variable "region" {
+  type = string
+  description = "Region Location"
+  default = "westus"
+}
+
 variable "contact_emails" {
   type = list(string)
   description = "Personal email to get alerts"

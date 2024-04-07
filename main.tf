@@ -9,7 +9,7 @@ terraform {
 
 resource "azurerm_resource_group" "prime95_rg" {
   name     = "prime95-project-rg"
-  location = "westus" # Choose a Free Tier supported location 
+  location = var.region
 }
 
 
