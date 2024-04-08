@@ -17,12 +17,14 @@ variable "admin_username" {
   type        = string
   description = "Administrator username"
   default     = "admin"
+  sensitive   = true
 }
 
 variable "admin_password" {
   type        = string
   description = "Administrator Password"
   default     = "password"
+  sensitive   = true
 }
 
 variable "mersenne_username" {

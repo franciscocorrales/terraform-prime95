@@ -4,6 +4,10 @@ Exploring Azure with Terraform. This project provisions a low-cost environment f
 
 ## Setup
 
+### Configuration and secrets
+
+Create a file to store you secrets and configurations: terraform.tfvars. Override any variable from the variables.tf file.
+
 ### Sign in
 
 ```markdown
