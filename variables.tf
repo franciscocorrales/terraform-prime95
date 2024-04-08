@@ -2,7 +2,7 @@
 variable "region" {
   type        = string
   description = "Region Location"
-  default     = "westus"
+  default     = "centralus"
 }
 
 variable "contact_emails" {

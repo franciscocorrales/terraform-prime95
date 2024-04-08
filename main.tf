@@ -54,6 +54,15 @@ resource "azurerm_linux_virtual_machine" "prime95_vm" {
   size                  = "Standard_B1s"
   admin_username        = var.admin_username
   admin_password        = var.admin_password
+  provisioner "local-exec" {
+    command = <<-EOF
+      sh -c '
+        export PRIME_TAR_PATH=${var.prime_tar_path}
+        export MERSENNE_USERNAME=${var.mersenne_username}
+        ./install.sh
+      '
+      EOF
+  }
 
   os_disk {
     caching              = "ReadWrite"
@@ -66,26 +75,4 @@ resource "azurerm_linux_virtual_machine" "prime95_vm" {
     sku       = "18.04-LTS"
     version   = "latest"
   }
-
-  # Script to install and run Prime95 
-  custom_data = base64encode(<<EOF
-    #!/bin/bash
-    # Update and install dependencies
-    # sudo apt-get update && sudo apt-get install -y any_dependencies_Prime95_needs
-
-    # Download Prime95 (assuming a Linux version is available)
-    curl var.prime_tar_path
-
-    # Unpack
-    tar -xvzf prime95.tar.gz
-
-    # Execute Prime95 (adjust the path and execution options as needed)
-    ./mprime -m
-
-    # TODO login to Prime95 with user
-    # var.mersenne_username
-    # TODO settings and configs
-
-    EOF
-  )
 }
